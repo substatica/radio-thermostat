@@ -138,7 +138,7 @@ class Main extends Component {
             <hr></hr>
             <h2>Fan State: {status.fstate ? "ON" : "OFF"}</h2>
             <h2>Furnace State: {StateMap.get(status.tstate)}</h2>
-            <h2>Time: {TimeToString(status.time)}</h2>
+            <h2>Thermostat Time: {TimeToString(status.time)}</h2>
 
         </div>
     }
