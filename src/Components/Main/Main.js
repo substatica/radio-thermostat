@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {FahrenheitToCelsius, FormatTemperature, StateMap, ModeMap, FanModeMap, TimeToString} from '../../Utilities/Utilities';
+import {ConvertUnit, FormatTemperature, StateMap, ModeMap, FanModeMap, TimeToString} from '../../Utilities/Utilities';
 
 const TSTAT_ADDRESS = "/tstat";
 
@@ -103,19 +103,19 @@ class Main extends Component {
         const status = this.state.thermostatState;
         let target;
         if (status.tmode === 1) {
-            target = <h2>Heat Target: {FormatTemperature(FahrenheitToCelsius(status.t_heat))}&deg;&nbsp;
+            target = <h2>Heat Target: {FormatTemperature(ConvertUnit(status.t_heat))}&deg;&nbsp;
                     <button disabled={this.state.busy} onClick={() => this.setHeat(-.5)}>-</button> 
                     <button disabled={this.state.busy} onClick={() => this.setHeat(.5)}>+</button>
                 </h2>;
         } else {
-            target = <h2>Cool Target: {FormatTemperature(FahrenheitToCelsius(status.t_cool))}&deg;&nbsp;
+            target = <h2>Cool Target: {FormatTemperature(ConvertUnit(status.t_cool))}&deg;&nbsp;
                     <button disabled={this.state.busy} onClick={() => this.setCool(-.5)}>-</button> 
                     <button disabled={this.state.busy} onClick={() => this.setCool(.5)}>+</button>
                 </h2>;
         }
 
         return <div>
-            <h2>Current Temp: {FormatTemperature(FahrenheitToCelsius(status.temp))}&deg;&nbsp;
+            <h2>Current Temp: {FormatTemperature(ConvertUnit(status.temp))}&deg;&nbsp;
                 <button disabled={this.state.busy} onClick={() => this.getThermostatState()}>REFRESH</button> 
             </h2>
             {target}

@@ -1,4 +1,8 @@
-export const FahrenheitToCelsius = (f) => {
+export const ConvertUnit = (f) => {
+    if(!f) return NaN;
+    
+    if(process.env.UNITS.toUpperCase() === "FA") return f;
+
     return (f - 32) * 5/9;
 }
 
