@@ -1,6 +1,6 @@
 ## Configure Thermostat
 
-Update themorstat IP address here:
+Update thermostat IP address here:
 
 ### `config.env`
 
