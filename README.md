@@ -1,6 +1,8 @@
-# Getting Started with Create React App
+## Configure Thermostat
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Update themorstat IP address here:
+
+### `config.env`
 
 ## Available Scripts
 
