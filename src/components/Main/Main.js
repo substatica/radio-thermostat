@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {FahrenheitToCelsius, FormatTemperature, StateMap, ModeMap, FanModeMap} from '../../Utilities/Utilities';
+import {FahrenheitToCelsius, FormatTemperature, StateMap, ModeMap, FanModeMap, TimeToString} from '../../Utilities/Utilities';
 
 const TSTAT_ADDRESS = "/tstat";
 
@@ -138,7 +138,7 @@ class Main extends Component {
             <hr></hr>
             <h2>Fan State: {status.fstate ? "ON" : "OFF"}</h2>
             <h2>Furnace State: {StateMap.get(status.tstate)}</h2>
-            <h2>Time: {status.time.hour}:{status.time.minute}</h2>
+            <h2>Time: {TimeToString(status.time)}</h2>
 
         </div>
     }

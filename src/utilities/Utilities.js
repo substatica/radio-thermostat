@@ -6,6 +6,17 @@ export const FormatTemperature = (t) => {
     return t.toFixed(1);
 }
 
+export const TimeToString = (t) => {
+    if(!t.hour && !t.minute)
+        return "NULL";
+
+    const AMPM = t.hour > 12 ? "PM" : "AM";
+    const hour = t.hour > 12 ? t.hour-12 : t.hour;
+    const minute = t.minute > 9 ? t.minute : "0" + t.minute;
+
+    return `${hour}:${minute} ${AMPM}`;
+}
+
 export const ModeMap = new Map([
     [0, "OFF"],
     [1, "HEAT"],
