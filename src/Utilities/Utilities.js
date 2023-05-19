@@ -36,6 +36,6 @@ export const StateMap = new Map([
 
 export const FanModeMap = new Map([
     [0, "AUTO"],
-    [1, "AUTO/CIRCULATE"],
+    [1, "CIRCULATE"],
     [2, "ON"],
 ]);

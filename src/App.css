@@ -1,5 +1,78 @@
+body {
+  background: #444444;
+  margin: 25px;
+  color: white;
+}
+
 button {
   height: 30px;
   padding: 0px 10px;
   margin: 0px 2px;
+  border-radius: 5px;
+  border: 1px solid #222222;
+  vertical-align: bottom;
+}
+
+span {
+  margin-right: 10px;
+}
+
+.Mode_HEAT {
+  color: red;
+}
+
+.Mode_COOL {
+  color: lightblue;
+}
+
+.Mode_OFF {
+  color: gray;
+}
+
+.State_HEATING {
+  color: red;
+}
+
+.State_COOLING {
+  color: lightblue;
+}
+
+.State_OFF {
+  color: gray;
+}
+
+.Fan_ON {
+  color: green;
+}
+
+.Fan_CIRCULATE {
+  color: lightblue;
+}
+
+.Fan_OFF {
+  color: gray;
+}
+
+.Hold_ON {
+  color: green;
+}
+
+.Hold_OFF {
+  color: gray;
+}
+
+.Target_HEAT {
+  color: red;
+}
+
+.Target_COOL {
+  color: lightblue;
+}
+
+.FanState_ON {
+  color: green;
+}
+
+.FanState_OFF {
+  color: gray;
 }
