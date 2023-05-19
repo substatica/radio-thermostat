@@ -1,10 +1,8 @@
-## Configure Thermostat
+## Configure
 
-Update thermostat IP address here:
+Update thermostat IP address, and desired temperature units (FA/CE) here:
 
 ### `config.env`
-
-## Available Scripts
 
 In the project directory, you can run:
 
