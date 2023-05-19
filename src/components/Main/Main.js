@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {FahrenheitToCelsius, FormatTemperature, StateMap, ModeMap, FanModeMap} from '../../Utilities/Utilities';
 
-const TSTAT_ADDRESS = "/tstat"; //`http://${process.env.THERMOSTAT_IP_ADDRESS}/tstat`;
+const TSTAT_ADDRESS = "/tstat";
 
 class Main extends Component {
     constructor(props) {
