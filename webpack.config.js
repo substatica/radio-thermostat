@@ -1,0 +1,48 @@
+// webpack.config.js
+
+const webpack = require('webpack')
+const path = require("path");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+require('dotenv').config({ path: './config.env' }); 
+
+module.exports = {
+    entry: "./src/index.js",
+    output: {
+        filename: "main.js",
+        path: path.resolve(__dirname, "build"),
+    },
+    module: {
+        rules: [
+            {
+                test: /\.(js|jsx)$/,
+                exclude: /node_modules/,
+                use: ["babel-loader"]
+            },
+            {
+                test: /\.css$/i,
+                use: ["style-loader", "css-loader"],
+            }
+        ]
+    },
+    mode: "development",
+    plugins: [
+        new HtmlWebpackPlugin({
+            title: 'Radio Thermostat',
+            template: "public/index.html",
+        }),
+        new webpack.ProvidePlugin({
+            process: 'process/browser',
+        }),
+        new webpack.DefinePlugin({
+            "process.env": JSON.stringify(process.env),
+        }),
+    ],
+    devServer: {
+        proxy: {
+            '/tstat': {
+                 target: 'http://localhost:8080',
+                 router: () => 'http://192.168.0.102',
+            }
+         }
+    }
+};
