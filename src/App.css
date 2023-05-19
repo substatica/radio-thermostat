@@ -11,6 +11,7 @@ button {
   border-radius: 5px;
   border: 1px solid #222222;
   vertical-align: bottom;
+  background-color: lightgray;
 }
 
 span {
