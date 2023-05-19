@@ -1,3 +1,7 @@
+## Radio Thermostat
+
+This is a web interface to fetch the state and issue commands directly to a Radio Thermostat. It is a work-in-progress and will need some dev work to function in production. Currently functions when run through the webpack dev server.
+
 ## Configure
 
 Update thermostat IP address, and desired temperature units (FA/CE) here:
