@@ -18,3 +18,9 @@ export const StateMap = new Map([
     [1, "HEATING"],
     [2, "COOLING"],
 ]);
+
+export const FanModeMap = new Map([
+    [0, "AUTO"],
+    [1, "AUTO/CIRCULATE"],
+    [2, "ON"],
+]);
