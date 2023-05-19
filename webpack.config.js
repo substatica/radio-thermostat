@@ -41,7 +41,7 @@ module.exports = {
         proxy: {
             '/tstat': {
                  target: 'http://localhost:8080',
-                 router: () => 'http://192.168.0.102',
+                 router: () => `http://${process.env.THERMOSTAT_IP_ADDRESS}`,
             }
          }
     }
