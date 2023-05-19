@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import {FahrenheitToCelsius, FormatTemperature, StateMap, ModeMap, FanModeMap} from '../../utilities/Utilities';
+import {FahrenheitToCelsius, FormatTemperature, StateMap, ModeMap, FanModeMap} from '../../Utilities/Utilities';
 
 const TSTAT_ADDRESS = "/tstat"; //`http://${process.env.THERMOSTAT_IP_ADDRESS}/tstat`;
 
-class Status extends Component {
+class Main extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -143,4 +143,4 @@ class Status extends Component {
         </div>
     }
 }
-export default Status;  
+export default Main;  
