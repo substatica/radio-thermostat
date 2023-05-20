@@ -1,10 +1,16 @@
 ## Radio Thermostat
 
-This is a web interface to fetch the state and issue commands directly to a Radio Thermostat. It is a work-in-progress and will need some dev work to function in production as CORS is a big issue here. Currently functions when run through the webpack dev server.
+This is a web interface to fetch the state and issue commands directly to a Radio Thermostat. It uses a minimal PHP backend to forward request to the thermostat. To install for production update config.php with the IP address of the thermostat and deploy the release zip files onto a PHP web server.
+
+paypal.me/substatica
 
 ## Configure
 
-Update thermostat IP address, and desired temperature units (FA/CE) here:
+For production update thermostat IP address here:
+
+### `config.php`
+
+For development update thermostat IP address here:
 
 ### `config.env`
 
