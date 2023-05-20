@@ -6,8 +6,7 @@ let TSTAT_ADDRESS;
 if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
     TSTAT_ADDRESS = "tstat";
 } else {
-    // CORS prevents production usage
-    TSTAT_ADDRESS = `http://${process.env.THERMOSTAT_IP_ADDRESS}/tstat`;
+    TSTAT_ADDRESS = `proxy.php`;
 }
 
 

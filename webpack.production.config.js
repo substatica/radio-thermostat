@@ -25,7 +25,7 @@ module.exports = {
             }
         ]
     },
-    mode: "development",
+    mode: "production",
     plugins: [
         new HtmlWebpackPlugin({
             title: 'Radio Thermostat',
