@@ -1,6 +1,6 @@
 ## Radio Thermostat
 
-This is a web interface to fetch the state and issue commands directly to a Radio Thermostat. It uses a minimal PHP backend to forward request to the thermostat. To install for production update config.php with the IP address of the thermostat and deploy the release zip files onto a PHP web server.
+This is a web interface to fetch the state and issue commands directly to a Radio Thermostat. It uses a minimal PHP backend to forward requests to the thermostat. To install for production update config.php with the IP address of the thermostat and deploy the release files onto a PHP web server.
 
 http://paypal.me/substatica
 
