@@ -1,8 +1,7 @@
-export const ConvertUnit = (f) => {
+export const ConvertUnit = (f, celsius) => {
     if(!f) return NaN;
+    if(!celsius) return f;
     
-    if(process.env.UNITS.toUpperCase() === "FA") return f;
-
     return (f - 32) * 5/9;
 }
 
