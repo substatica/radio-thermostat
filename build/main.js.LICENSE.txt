@@ -5,6 +5,8 @@
  * MIT Licensed
  */
 
+/*! For license information please see ReactWeather.js.LICENSE.txt */
+
 /**
  * @license React
  * react-dom.production.min.js
