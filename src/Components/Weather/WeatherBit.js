@@ -3,9 +3,9 @@ import ReactWeather, { useWeatherBit } from 'react-open-weather';
 
 const WeatherBit = () => {
     const { data, isLoading, errorMessage } = useWeatherBit({
-      key: '[weatherbit.io API Key]',
-      lat: '[Location Latitude]',
-      lon: '[Location Longitude]',
+      key: '[Weatherbit.io API Key]',
+      lat: '[Latitude]',
+      lon: '[Longitude]',
       lang: 'en',
       unit: 'M', // values are (M,S,I)    
     });
