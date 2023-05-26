@@ -121,12 +121,12 @@ class Main extends Component {
         const status = this.state.thermostatState;
         let target;
         if (status.tmode === 1) {
-            target = <h2>Heat Target: <span class="Target_HEAT">{FormatTemperature(ConvertUnit(status.t_heat, this.state.celsius))}&deg;</span>
+            target = <h2>Heat Target: <span className="Target_HEAT">{FormatTemperature(ConvertUnit(status.t_heat, this.state.celsius))}&deg;</span>
                 <button disabled={this.state.busy} onClick={() => this.setHeat(-.5)}>-</button>
                 <button disabled={this.state.busy} onClick={() => this.setHeat(.5)}>+</button>
             </h2>;
         } else {
-            target = <h2>Cool Target: <span class="Target_COOL">{FormatTemperature(ConvertUnit(status.t_cool, this.state.celsius))}&deg;</span>
+            target = <h2>Cool Target: <span className="Target_COOL">{FormatTemperature(ConvertUnit(status.t_cool, this.state.celsius))}&deg;</span>
                 <button disabled={this.state.busy} onClick={() => this.setCool(-.5)}>-</button>
                 <button disabled={this.state.busy} onClick={() => this.setCool(.5)}>+</button>
             </h2>;
@@ -137,25 +137,25 @@ class Main extends Component {
                 <button disabled={this.state.busy} onClick={() => this.getThermostatState()}>REFRESH</button>
             </h2>
             {target}
-            <h2>Mode: <span class={`Mode_${ModeMap.get(status.tmode)}`}>{ModeMap.get(status.tmode)}</span>
+            <h2>Mode: <span className={`Mode_${ModeMap.get(status.tmode)}`}>{ModeMap.get(status.tmode)}</span>
                 <button disabled={this.state.busy} onClick={() => this.setMode(0)}>OFF</button>
                 <button disabled={this.state.busy} onClick={() => this.setMode(1)}>HEAT</button>
                 <button disabled={this.state.busy} onClick={() => this.setMode(2)}>COOL</button>
                 <button disabled={this.state.busy} onClick={() => this.setMode(3)}>AUTO</button>
             </h2>
-            <h2>Hold: <span class={`Hold_${status.hold ? "ON" : "OFF"}`}>{status.hold ? "ON" : "OFF"}</span>
+            <h2>Hold: <span className={`Hold_${status.hold ? "ON" : "OFF"}`}>{status.hold ? "ON" : "OFF"}</span>
                 <button disabled={this.state.busy} onClick={() => this.setHold(0)}>OFF</button>
                 <button disabled={this.state.busy} onClick={() => this.setHold(1)}>ON</button>
             </h2>
             <h2>
-                Fan Mode: <span class={`Fan_${FanModeMap.get(status.fmode)}`}>{FanModeMap.get(status.fmode)}</span>
+                Fan Mode: <span className={`Fan_${FanModeMap.get(status.fmode)}`}>{FanModeMap.get(status.fmode)}</span>
                 <button disabled={this.state.busy} onClick={() => this.setFan(0)}>AUTO</button>
                 <button disabled={this.state.busy} onClick={() => this.setFan(1)}>CIRCULATE</button>
                 <button disabled={this.state.busy} onClick={() => this.setFan(2)}>ON</button>
             </h2>
             <hr></hr>
-            <h2>Fan State: <span class={`FanState_${status.fstate ? "ON" : "OFF"}`}>{status.fstate ? "ON" : "OFF"}</span></h2>
-            <h2>Furnace State: <span class={`State_${ModeMap.get(status.tstate)}`}>{StateMap.get(status.tstate)}</span></h2>
+            <h2>Fan State: <span className={`FanState_${status.fstate ? "ON" : "OFF"}`}>{status.fstate ? "ON" : "OFF"}</span></h2>
+            <h2>Furnace State: <span className={`State_${ModeMap.get(status.tstate)}`}>{StateMap.get(status.tstate)}</span></h2>
             <h2>Thermostat Time: {TimeToString(status.time)}</h2>
             <h3><Checkbox label={"Celsius"} onChange={() => this.onChange()} value={this.state.celsius} /></h3>
         </div>
