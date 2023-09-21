@@ -1,11 +1,22 @@
-export const ConvertUnit = (f, celsius) => {
-    if(!f) return NaN;
-    if(!celsius) return f;
-    
-    return (f - 32) * 5/9;
+export const RoundToPointFive = (value) => {
+    return (Math.round(value * 2) / 2).toFixed(1);
 }
 
+export const ConvertToCelsius = (fahrenheit) => {
+    if(!fahrenheit) return NaN;
+    
+    return (fahrenheit - 32) * 5/9;
+}
+
+export const ConvertToFahrenheit = (celsius) => {
+    if(!celsius) return NaN;
+    
+    return celsius * 9 / 5 + 32;
+} 
+
 export const FormatTemperature = (t) => {
+    if(!t) return NaN;
+
     return t.toFixed(1);
 }
 

@@ -14,6 +14,18 @@ button {
   background-color: lightgray;
 }
 
+input {
+  height: 28px;
+  width: 28px;
+  text-align:center;
+  padding: 0px 10px;
+  margin: 0px 2px;
+  border-radius: 5px;
+  border: 1px solid #222222;
+  vertical-align: bottom;
+  background-color: lightgray;
+}
+
 span {
   margin-right: 10px;
 }

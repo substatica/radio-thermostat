@@ -1,5 +1,5 @@
 import { React, Component } from 'react';
-import { ConvertUnit, FormatTemperature, StateMap, ModeMap, FanModeMap, TimeToString } from '../../Utilities/Utilities';
+import { RoundToPointFive, ConvertToCelsius, ConvertToFahrenheit, FormatTemperature, StateMap, ModeMap, FanModeMap, TimeToString } from '../../Utilities/Utilities';
 import Cookies from 'universal-cookie';
 import Checkbox from '../Checkbox/Checkbox';
 
@@ -14,11 +14,16 @@ if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
 const cookies = new Cookies();
 
 class Main extends Component {
+
     constructor(props) {
+        const celsius = cookies.get("use-celsius") && cookies.get("use-celsius") === 'true';
+        const increment = parseFloat(cookies.get("increment")) || .5;
+
         super(props);
         this.state = {
             busy: false,
-            celsius: cookies.get("use-celsius"),
+            celsius: celsius,
+            increment: increment,
             thermostatState: {
                 temp: undefined,
                 tmode: undefined,
@@ -36,6 +41,10 @@ class Main extends Component {
                 t_type_post: undefined
             }
         }
+
+        this.setCoolHandler = this.setCool.bind(this);
+        this.setHeatHandler = this.setHeat.bind(this);
+        this.onIncrementChangeHandler = this.onIncrementChange.bind(this);
     }
 
     getThermostatState() {
@@ -97,43 +106,70 @@ class Main extends Component {
     }
 
     setHeat(adjust) {
+        var newTargetHeat = this.state.thermostatState.t_heat + (adjust * this.state.increment);
+        
+        if(this.state.celsius) {
+            newTargetHeat = ConvertToFahrenheit(ConvertToCelsius(this.state.thermostatState.t_heat) + (adjust * this.state.increment));
+            newTargetHeat = adjust > 0 ? Math.ceil(newTargetHeat) : Math.floor(newTargetHeat);        
+        }
+
         const json = {
-            t_heat: this.state.thermostatState.t_heat + adjust
+            t_heat: newTargetHeat
         };
         this.postCommand(JSON.stringify(json));
     }
 
     setCool(adjust) {
+        var newTargetCool = this.state.thermostatState.t_cool + (adjust * this.state.increment);
+        
+        if(this.state.celsius) {
+            newTargetCool = ConvertToFahrenheit(ConvertToCelsius(this.state.thermostatState.t_cool) + (adjust * this.state.increment));
+            newTargetCool = adjust > 0 ? Math.ceil(newTargetCool) : Math.floor(newTargetCool);        
+        }
+
         const json = {
-            t_cool: this.state.thermostatState.t_cool + adjust
+            t_cool: newTargetCool
         };
         this.postCommand(JSON.stringify(json));
     }
 
-    onChange() {
+    onUnitChange() {
+        var newCelsius = !this.state.celsius;
         this.setState({
-            celsius: !this.state.celsius
+            celsius: newCelsius
         });
-        cookies.set("use-celsius", this.state.celsius);
+        cookies.set("use-celsius", newCelsius);
+    }
+
+    onIncrementChange(e) {
+        const newIncrement = parseFloat(e.target.value);
+        if (newIncrement) {
+            this.setState({
+                increment: newIncrement
+            });
+            cookies.set("increment", newIncrement);
+        }
     }
 
     render() {
         const status = this.state.thermostatState;
         let target;
         if (status.tmode === 1) {
-            target = <h2>Heat Target: <span className="Target_HEAT">{FormatTemperature(ConvertUnit(status.t_heat, this.state.celsius))}&deg;</span>
-                <button disabled={this.state.busy} onClick={() => this.setHeat(-.5)}>-</button>
-                <button disabled={this.state.busy} onClick={() => this.setHeat(.5)}>+</button>
+            target = <h2>Heat Target: <span className="Target_HEAT">{FormatTemperature(this.state.celsius ? ConvertToCelsius(status.t_heat) : status.t_heat)}&deg;</span>
+                <button disabled={this.state.busy} onClick={() => this.setHeatHandler(-1)}>-</button>
+                <input value={this.state.increment} onChange={this.onIncrementChangeHandler} />
+                <button disabled={this.state.busy} onClick={() => this.setHeatHandler(1)}>+</button>
             </h2>;
         } else {
-            target = <h2>Cool Target: <span className="Target_COOL">{FormatTemperature(ConvertUnit(status.t_cool, this.state.celsius))}&deg;</span>
-                <button disabled={this.state.busy} onClick={() => this.setCool(-.5)}>-</button>
-                <button disabled={this.state.busy} onClick={() => this.setCool(.5)}>+</button>
+            target = <h2>Cool Target: <span className="Target_COOL">{FormatTemperature(this.state.celsius ? ConvertToCelsius(status.t_cool) : status.t_cool)}&deg;</span>
+                <button disabled={this.state.busy} onClick={() => this.setCoolHandler(-1)}>-</button>
+                <input value={this.state.increment} onChange={this.onIncrementChangeHandler} />
+                <button disabled={this.state.busy} onClick={() => this.setCoolHandler(1)}>+</button>
             </h2>;
         }
 
         return <div>
-            <h2>Current Temp: {FormatTemperature(ConvertUnit(status.temp, this.state.celsius))}&deg;&nbsp;
+            <h2>Current Temp: {FormatTemperature(this.state.celsius ? ConvertToCelsius(status.temp) : status.temp)}&deg;&nbsp;
                 <button disabled={this.state.busy} onClick={() => this.getThermostatState()}>REFRESH</button>
             </h2>
             {target}
@@ -157,7 +193,7 @@ class Main extends Component {
             <h2>Fan State: <span className={`FanState_${status.fstate ? "ON" : "OFF"}`}>{status.fstate ? "ON" : "OFF"}</span></h2>
             <h2>Furnace State: <span className={`State_${ModeMap.get(status.tstate)}`}>{StateMap.get(status.tstate)}</span></h2>
             <h2>Thermostat Time: {TimeToString(status.time)}</h2>
-            <h3><Checkbox label={"Celsius"} onChange={() => this.onChange()} value={this.state.celsius} /></h3>
+            <h3><Checkbox label={"Celsius"} onChange={() => this.onUnitChange()} value={this.state.celsius} /></h3>
         </div>
     }
 }
