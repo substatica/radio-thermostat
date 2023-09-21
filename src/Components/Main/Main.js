@@ -157,13 +157,13 @@ class Main extends Component {
         if (status.tmode === 1) {
             target = <h2>Heat Target: <span className="Target_HEAT">{FormatTemperature(this.state.celsius ? ConvertToCelsius(status.t_heat) : status.t_heat)}&deg;</span>
                 <button disabled={this.state.busy} onClick={() => this.setHeatHandler(-1)}>-</button>
-                <input value={this.state.increment} onChange={this.onIncrementChangeHandler} />
+                <input type="text" value={this.state.increment} onChange={this.onIncrementChangeHandler} />
                 <button disabled={this.state.busy} onClick={() => this.setHeatHandler(1)}>+</button>
             </h2>;
         } else {
             target = <h2>Cool Target: <span className="Target_COOL">{FormatTemperature(this.state.celsius ? ConvertToCelsius(status.t_cool) : status.t_cool)}&deg;</span>
                 <button disabled={this.state.busy} onClick={() => this.setCoolHandler(-1)}>-</button>
-                <input value={this.state.increment} onChange={this.onIncrementChangeHandler} />
+                <input type="text" value={this.state.increment} onChange={this.onIncrementChangeHandler} />
                 <button disabled={this.state.busy} onClick={() => this.setCoolHandler(1)}>+</button>
             </h2>;
         }

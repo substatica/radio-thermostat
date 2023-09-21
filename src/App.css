@@ -16,7 +16,7 @@ button {
 
 input {
   height: 28px;
-  width: 28px;
+  width: 25px;
   text-align:center;
   padding: 0px 10px;
   margin: 0px 2px;
@@ -27,7 +27,7 @@ input {
 }
 
 span {
-  margin-right: 10px;
+  margin-right: 5px;
 }
 
 .Mode_HEAT {

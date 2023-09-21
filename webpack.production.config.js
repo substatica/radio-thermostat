@@ -9,8 +9,9 @@ require('dotenv').config({ path: './config.env' });
 module.exports = {
     entry: "./src/index.js",
     output: {
-        filename: "main.js",
+        filename: '[name].[contenthash].js',
         path: path.resolve(__dirname, "build"),
+        clean: true,
     },
     module: {
         rules: [
